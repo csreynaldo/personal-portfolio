@@ -10,7 +10,7 @@ A modern, performant, and accessible portfolio website built with Next.js 15, Re
 - **UI Components:** shadcn/ui (Radix UI primitives)
 - **Animations:** Framer Motion
 - **Icons:** Lucide React
-- **Theme:** next-themes
+- **Theme:** Dark terminal theme
 - **Forms:** React Hook Form + Zod
 - **Toasts:** Sonner
 - **Analytics:** Vercel Analytics, Speed Insights
@@ -21,8 +21,8 @@ A modern, performant, and accessible portfolio website built with Next.js 15, Re
 
 ## Features
 
-- 🌓 Dark/Light/System theme with persistence
-- 🎨 Glassmorphism design with gradient accents
+- 🖥️ Terminal-inspired cyber-minimal design
+- 🎨 Green-on-dark color palette with premium aesthetic
 - ⚡ Excellent performance (targeting 100 Lighthouse scores)
 - ♿ WCAG AA accessible
 - 📱 Fully responsive
