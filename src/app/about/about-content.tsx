@@ -1,6 +1,6 @@
 "use client";
 
-import { Download, GraduationCap, Target, Code2, Sparkles } from "lucide-react";
+import { GraduationCap, Target, Code2, Sparkles } from "lucide-react";
 import { FadeIn } from "@/components/ui/motion-wrapper";
 
 export function AboutContent() {
