@@ -1,11 +1,12 @@
 import Link from "next/link";
-import { Github, Linkedin, Twitter, Mail } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
+import { XLogo } from "@/components/ui/x-logo";
 import { siteConfig } from "@/data/site";
 
 const iconMap: Record<string, React.ReactNode> = {
   github: <Github className="h-4 w-4" />,
   linkedin: <Linkedin className="h-4 w-4" />,
-  twitter: <Twitter className="h-4 w-4" />,
+  twitter: <XLogo className="h-4 w-4" />,
   mail: <Mail className="h-4 w-4" />,
 };
 

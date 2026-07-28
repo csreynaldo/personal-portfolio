@@ -2,9 +2,9 @@ import type { SiteConfig } from "@/types";
 
 export const siteConfig: SiteConfig = {
   name: "Reynaldo Jr. Pahay",
-  title: "Full-Stack Software Engineer & AI Enthusiast",
+  title: "Computer Science Graduate & Aspiring Backend Developer",
   description:
-    "I build exceptional digital experiences that are fast, accessible, and beautiful. Specializing in modern web technologies, AI integration, and scalable architectures.",
+    "Passionate about building reliable backend systems and continuously improving my software engineering skills. I'm eager to contribute to real-world projects, collaborate with experienced developers, and grow into a backend engineering role.",
   url: "https://johndoe.com",
   ogImage: "https://johndoe.com/og.jpg",
   links: [

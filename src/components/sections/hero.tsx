@@ -2,14 +2,15 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowDown, Github, Linkedin, Twitter, Mail } from "lucide-react";
+import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
+import { XLogo } from "@/components/ui/x-logo";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/data/site";
 
 const iconMap: Record<string, React.ReactNode> = {
   github: <Github className="h-4 w-4" />,
   linkedin: <Linkedin className="h-4 w-4" />,
-  twitter: <Twitter className="h-4 w-4" />,
+  twitter: <XLogo className="h-4 w-4" />,
   mail: <Mail className="h-4 w-4" />,
 };
 
