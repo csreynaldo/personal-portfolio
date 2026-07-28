@@ -7,7 +7,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/data/site";
-import { ModeToggle } from "@/components/ui/mode-toggle";
 import { Button } from "@/components/ui/button";
 
 export function Navbar() {
@@ -64,13 +63,10 @@ export function Navbar() {
               <span className="relative z-10">{link.label}</span>
             </Link>
           ))}
-          <span className="text-muted-foreground mx-1 font-mono text-xs">|</span>
-          <ModeToggle />
         </div>
 
         {/* Mobile Menu Button */}
         <div className="flex items-center gap-2 md:hidden">
-          <ModeToggle />
           <Button
             variant="ghost"
             size="icon"
