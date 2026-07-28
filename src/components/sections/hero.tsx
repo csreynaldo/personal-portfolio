@@ -19,10 +19,10 @@ export function Hero() {
       {/* Terminal grid background */}
       <div className="absolute inset-0 -z-10">
         <div
-          className="absolute inset-0 opacity-[0.015]"
+          className="absolute inset-0 opacity-[0.04]"
           style={{
             backgroundImage:
-              "linear-gradient(rgba(0,255,102,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,255,102,0.1) 1px, transparent 1px)",
+              "linear-gradient(rgba(0,255,102,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(0,255,102,0.15) 1px, transparent 1px)",
             backgroundSize: "48px 48px",
           }}
         />
