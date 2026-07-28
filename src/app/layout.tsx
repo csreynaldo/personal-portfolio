@@ -20,8 +20,11 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: `${siteConfig.name} - ${siteConfig.title}`,
-    template: `%s | ${siteConfig.name}`,
+    default: "csrey",
+    template: `%s | csrey`,
+  },
+  icons: {
+    icon: "/favicon.svg",
   },
   description: siteConfig.description,
   keywords: [
