@@ -10,47 +10,39 @@ export function CallToAction() {
     <section className="section-padding">
       <div className="max-width">
         <FadeIn>
-          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-purple-600 via-blue-600 to-purple-700 px-8 py-16 text-center text-white shadow-2xl shadow-purple-500/25 sm:px-16">
-            {/* Background pattern */}
-            <div className="absolute inset-0 opacity-10">
-              <div
-                className="absolute inset-0"
-                style={{
-                  backgroundImage: "radial-gradient(circle at 25% 25%, white 1px, transparent 1px)",
-                  backgroundSize: "40px 40px",
-                }}
-              />
+          <div className="terminal-window border-primary/30 px-8 py-12 text-center sm:px-16">
+            <div className="terminal-window-header">
+              <span className="terminal-window-dot red" />
+              <span className="terminal-window-dot yellow" />
+              <span className="terminal-window-dot green" />
+              <span className="ml-2 font-mono text-[10px] text-muted-foreground/60">
+                contact.sh
+              </span>
             </div>
-
-            <div className="relative">
+            <div className="p-4 sm:p-8">
+              <div className="mb-4 flex items-center justify-center gap-2 font-mono text-sm text-muted-foreground">
+                <span className="text-primary">~</span>
+                <span>$</span>
+                <span className="text-primary">./contact.sh --init</span>
+              </div>
               <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
                 Let's Work Together
               </h2>
-              <p className="mx-auto mb-8 max-w-xl text-lg text-white/80">
+              <p className="text-muted-foreground mx-auto mb-8 max-w-xl text-sm leading-relaxed">
                 I'm always open to discussing new projects, creative ideas, or opportunities to be
                 part of your vision.
               </p>
-              <div className="flex flex-wrap items-center justify-center gap-4">
-                <Button
-                  variant="secondary"
-                  size="lg"
-                  className="bg-white text-purple-700 hover:bg-white/90"
-                  asChild
-                >
+              <div className="flex flex-wrap items-center justify-center gap-3">
+                <Button variant="default" size="lg" asChild>
                   <Link href="/contact">
-                    <Mail className="mr-2 h-5 w-5" />
+                    <Mail className="mr-2 h-4 w-4" />
                     Get In Touch
                   </Link>
                 </Button>
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="border-white/20 text-white hover:bg-white/10"
-                  asChild
-                >
+                <Button variant="outline" size="lg" asChild>
                   <Link href="/projects">
                     View Projects
-                    <ArrowRight className="ml-2 h-5 w-5" />
+                    <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
               </div>

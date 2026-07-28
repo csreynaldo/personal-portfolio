@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { Mail, MessageSquare, Send, CheckCircle2 } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { FadeIn } from "@/components/ui/motion-wrapper";
 import { siteConfig } from "@/data/site";
@@ -21,18 +20,16 @@ export function ContactContent() {
     e.preventDefault();
     setError("");
 
-    // Basic validation
     if (!formState.name || !formState.email || !formState.message) {
-      setError("Please fill in all required fields.");
+      setError("Error: missing required fields");
       return;
     }
 
     if (!formState.email.includes("@")) {
-      setError("Please enter a valid email address.");
+      setError("Error: invalid email format");
       return;
     }
 
-    // In production, this would send via Resend API
     setSubmitted(true);
   };
 
@@ -42,20 +39,35 @@ export function ContactContent() {
         <div className="max-width">
           <div className="mx-auto max-w-lg text-center">
             <FadeIn>
-              <div className="glass-card">
-                <div className="mb-6 flex justify-center">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-green-500/10">
-                    <CheckCircle2 className="h-8 w-8 text-green-500" />
-                  </div>
+              <div className="terminal-window border-primary/30">
+                <div className="terminal-window-header">
+                  <span className="terminal-window-dot red" />
+                  <span className="terminal-window-dot yellow" />
+                  <span className="terminal-window-dot green" />
+                  <span className="ml-2 font-mono text-[10px] text-muted-foreground/60">
+                    success.log
+                  </span>
                 </div>
-                <h2 className="mb-4 text-2xl font-bold">Message Sent!</h2>
-                <p className="text-muted-foreground mb-6">
-                  Thank you for reaching out! I'll get back to you as soon as possible. In the
-                  meantime, feel free to connect with me on social media.
-                </p>
-                <Button variant="gradient" onClick={() => setSubmitted(false)}>
-                  Send Another Message
-                </Button>
+                <div className="p-8">
+                  <div className="mb-6 flex justify-center">
+                    <div className="flex h-14 w-14 items-center justify-center border border-primary/30">
+                      <CheckCircle2 className="h-7 w-7 text-primary" />
+                    </div>
+                  </div>
+                  <div className="mb-3 flex items-center justify-center gap-2 font-mono text-sm text-muted-foreground">
+                    <span className="text-primary">~</span>
+                    <span>$</span>
+                    <span className="text-primary">echo $status</span>
+                  </div>
+                  <h2 className="mb-4 text-2xl font-bold">Message Sent</h2>
+                  <p className="text-muted-foreground mb-6 text-sm leading-relaxed">
+                    Thank you for reaching out! I'll get back to you as soon as possible.
+                  </p>
+                  <Button variant="outline" onClick={() => setSubmitted(false)}>
+                    <span className="mr-2 font-mono text-xs text-muted-foreground">$</span>
+                    send another
+                  </Button>
+                </div>
               </div>
             </FadeIn>
           </div>
@@ -68,46 +80,64 @@ export function ContactContent() {
     <div className="section-padding">
       <div className="max-width">
         <FadeIn>
-          <div className="mb-12 text-center">
-            <Badge variant="gradient" className="mb-4">
-              Contact
-            </Badge>
+          <div className="mb-12">
+            <div className="mb-3 flex items-center gap-2 font-mono text-sm text-muted-foreground">
+              <span className="text-primary">~</span>
+              <span>$</span>
+              <span>./contact.sh --help</span>
+            </div>
             <h1 className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl">Get In Touch</h1>
-            <p className="text-muted-foreground mx-auto max-w-2xl text-lg">
+            <p className="text-muted-foreground max-w-2xl">
               Have a project in mind or just want to say hi? I'd love to hear from you.
             </p>
           </div>
         </FadeIn>
 
-        <div className="mx-auto grid max-w-5xl gap-8 md:grid-cols-2">
+        <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-2">
           {/* Contact Info */}
           <FadeIn delay={0.1}>
             <div className="space-y-6">
-              <div className="glass-card">
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-purple-500/10">
-                  <Mail className="h-6 w-6 text-purple-500" />
+              <div className="terminal-window">
+                <div className="terminal-window-header">
+                  <span className="terminal-window-dot red" />
+                  <span className="terminal-window-dot yellow" />
+                  <span className="terminal-window-dot green" />
+                  <span className="ml-2 font-mono text-[10px] text-muted-foreground/60">
+                    contact-info.json
+                  </span>
                 </div>
-                <h3 className="mb-2 font-semibold">Email</h3>
-                <p className="text-muted-foreground text-sm">
-                  {siteConfig.links.find((l) => l.icon === "mail")?.url.replace("mailto:", "")}
-                </p>
-              </div>
+                <div className="p-5">
+                  <div className="mb-4 flex items-center gap-3">
+                    <div className="flex h-9 w-9 items-center justify-center border border-primary/30">
+                      <Mail className="h-4 w-4 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="font-mono text-xs font-medium text-muted-foreground">email</h3>
+                      <p className="font-mono text-sm">
+                        {siteConfig.links.find((l) => l.icon === "mail")?.url.replace("mailto:", "")}
+                      </p>
+                    </div>
+                  </div>
 
-              <div className="glass-card">
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-500/10">
-                  <MessageSquare className="h-6 w-6 text-blue-500" />
-                </div>
-                <h3 className="mb-2 font-semibold">Social</h3>
-                <div className="flex flex-wrap gap-2">
-                  {siteConfig.links
-                    .filter((l) => l.icon !== "mail")
-                    .map((link) => (
-                      <Button key={link.name} variant="ghost" size="sm" asChild>
-                        <a href={link.url} target="_blank" rel="noopener noreferrer">
-                          {link.name}
-                        </a>
-                      </Button>
-                    ))}
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-9 w-9 items-center justify-center border border-primary/30">
+                      <MessageSquare className="h-4 w-4 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="font-mono text-xs font-medium text-muted-foreground">social</h3>
+                      <div className="flex flex-wrap gap-1">
+                        {siteConfig.links
+                          .filter((l) => l.icon !== "mail")
+                          .map((link) => (
+                            <Button key={link.name} variant="ghost" size="sm" asChild>
+                              <a href={link.url} target="_blank" rel="noopener noreferrer">
+                                {link.name}
+                              </a>
+                            </Button>
+                          ))}
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -115,69 +145,82 @@ export function ContactContent() {
 
           {/* Contact Form */}
           <FadeIn delay={0.2}>
-            <form onSubmit={handleSubmit} className="glass-card space-y-6">
-              <div>
-                <label htmlFor="name" className="mb-2 block text-sm font-medium">
-                  Name *
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  value={formState.name}
-                  onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                  className="border-border bg-background text-foreground placeholder:text-muted-foreground focus:ring-ring w-full rounded-xl border px-4 py-2.5 text-sm focus:ring-2 focus:outline-none"
-                  placeholder="Your name"
-                />
+            <form
+              onSubmit={handleSubmit}
+              className="terminal-window"
+            >
+              <div className="terminal-window-header">
+                <span className="terminal-window-dot red" />
+                <span className="terminal-window-dot yellow" />
+                <span className="terminal-window-dot green" />
+                <span className="ml-2 font-mono text-[10px] text-muted-foreground/60">
+                  message.txt
+                </span>
               </div>
+              <div className="space-y-5 p-5">
+                <div>
+                  <label htmlFor="name" className="mb-1.5 block font-mono text-xs text-muted-foreground">
+                    name *
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    value={formState.name}
+                    onChange={(e) => setFormState({ ...formState, name: e.target.value })}
+                    className="border-border bg-background text-foreground placeholder:text-muted-foreground focus:ring-ring w-full border px-3 py-2 font-mono text-sm focus:ring-1 focus:outline-none"
+                    placeholder="John Doe"
+                  />
+                </div>
 
-              <div>
-                <label htmlFor="email" className="mb-2 block text-sm font-medium">
-                  Email *
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  value={formState.email}
-                  onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                  className="border-border bg-background text-foreground placeholder:text-muted-foreground focus:ring-ring w-full rounded-xl border px-4 py-2.5 text-sm focus:ring-2 focus:outline-none"
-                  placeholder="your@email.com"
-                />
+                <div>
+                  <label htmlFor="email" className="mb-1.5 block font-mono text-xs text-muted-foreground">
+                    email *
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    value={formState.email}
+                    onChange={(e) => setFormState({ ...formState, email: e.target.value })}
+                    className="border-border bg-background text-foreground placeholder:text-muted-foreground focus:ring-ring w-full border px-3 py-2 font-mono text-sm focus:ring-1 focus:outline-none"
+                    placeholder="john@example.com"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="subject" className="mb-1.5 block font-mono text-xs text-muted-foreground">
+                    subject
+                  </label>
+                  <input
+                    type="text"
+                    id="subject"
+                    value={formState.subject}
+                    onChange={(e) => setFormState({ ...formState, subject: e.target.value })}
+                    className="border-border bg-background text-foreground placeholder:text-muted-foreground focus:ring-ring w-full border px-3 py-2 font-mono text-sm focus:ring-1 focus:outline-none"
+                    placeholder="Project inquiry"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="message" className="mb-1.5 block font-mono text-xs text-muted-foreground">
+                    message *
+                  </label>
+                  <textarea
+                    id="message"
+                    rows={5}
+                    value={formState.message}
+                    onChange={(e) => setFormState({ ...formState, message: e.target.value })}
+                    className="border-border bg-background text-foreground placeholder:text-muted-foreground focus:ring-ring w-full resize-none border px-3 py-2 font-mono text-sm focus:ring-1 focus:outline-none"
+                    placeholder="Your message here..."
+                  />
+                </div>
+
+                {error && <p className="font-mono text-xs text-destructive">{error}</p>}
+
+                <Button type="submit" variant="default" size="lg" className="w-full">
+                  <Send className="mr-2 h-4 w-4" />
+                  Send Message
+                </Button>
               </div>
-
-              <div>
-                <label htmlFor="subject" className="mb-2 block text-sm font-medium">
-                  Subject
-                </label>
-                <input
-                  type="text"
-                  id="subject"
-                  value={formState.subject}
-                  onChange={(e) => setFormState({ ...formState, subject: e.target.value })}
-                  className="border-border bg-background text-foreground placeholder:text-muted-foreground focus:ring-ring w-full rounded-xl border px-4 py-2.5 text-sm focus:ring-2 focus:outline-none"
-                  placeholder="What's this about?"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="message" className="mb-2 block text-sm font-medium">
-                  Message *
-                </label>
-                <textarea
-                  id="message"
-                  rows={5}
-                  value={formState.message}
-                  onChange={(e) => setFormState({ ...formState, message: e.target.value })}
-                  className="border-border bg-background text-foreground placeholder:text-muted-foreground focus:ring-ring w-full resize-none rounded-xl border px-4 py-2.5 text-sm focus:ring-2 focus:outline-none"
-                  placeholder="Your message..."
-                />
-              </div>
-
-              {error && <p className="text-destructive text-sm">{error}</p>}
-
-              <Button type="submit" variant="gradient" size="lg" className="w-full">
-                <Send className="mr-2 h-4 w-4" />
-                Send Message
-              </Button>
             </form>
           </FadeIn>
         </div>

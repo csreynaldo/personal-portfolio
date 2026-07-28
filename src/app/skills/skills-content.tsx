@@ -11,20 +11,19 @@ import {
   LineChart,
   Brain,
 } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/motion-wrapper";
 import { skills } from "@/data/skills";
 
 const categoryIcons: Record<string, React.ReactNode> = {
-  Frontend: <Code2 className="h-6 w-6" />,
-  Backend: <Terminal className="h-6 w-6" />,
-  Database: <Database className="h-6 w-6" />,
-  Cloud: <Cloud className="h-6 w-6" />,
-  DevOps: <Box className="h-6 w-6" />,
-  "Programming Languages": <Brain className="h-6 w-6" />,
-  Tools: <Wrench className="h-6 w-6" />,
-  "Data Analytics": <BarChart3 className="h-6 w-6" />,
-  "Data Visualization": <LineChart className="h-6 w-6" />,
+  Frontend: <Code2 className="h-5 w-5" />,
+  Backend: <Terminal className="h-5 w-5" />,
+  Database: <Database className="h-5 w-5" />,
+  Cloud: <Cloud className="h-5 w-5" />,
+  DevOps: <Box className="h-5 w-5" />,
+  "Programming Languages": <Brain className="h-5 w-5" />,
+  Tools: <Wrench className="h-5 w-5" />,
+  "Data Analytics": <BarChart3 className="h-5 w-5" />,
+  "Data Visualization": <LineChart className="h-5 w-5" />,
 };
 
 const categoryDescriptions: Record<string, string> = {
@@ -46,60 +45,74 @@ export function SkillsContent() {
     <div className="section-padding">
       <div className="max-width">
         <FadeIn>
-          <div className="mb-12 text-center">
-            <Badge variant="gradient" className="mb-4">
-              Expertise
-            </Badge>
+          <div className="mb-12">
+            <div className="mb-3 flex items-center gap-2 font-mono text-sm text-muted-foreground">
+              <span className="text-primary">~</span>
+              <span>$</span>
+              <span>cat skills.json</span>
+            </div>
             <h1 className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl">
               Skills & Technologies
             </h1>
-            <p className="text-muted-foreground mx-auto max-w-2xl text-lg">
+            <p className="text-muted-foreground max-w-2xl">
               Technologies and tools I use to build exceptional digital experiences.
             </p>
           </div>
         </FadeIn>
 
-        <div className="space-y-12">
+        <div className="space-y-8">
           {categories.map((category, catIndex) => (
-            <FadeIn key={category} delay={catIndex * 0.1}>
-              <div>
-                <div className="mb-6 flex items-center gap-3">
-                  <div className="bg-primary/10 text-primary flex h-12 w-12 items-center justify-center rounded-xl">
-                    {categoryIcons[category] || <Code2 className="h-6 w-6" />}
-                  </div>
-                  <div>
-                    <h2 className="text-2xl font-bold">{category}</h2>
-                    <p className="text-muted-foreground text-sm">
-                      {categoryDescriptions[category]}
-                    </p>
-                  </div>
+            <FadeIn key={category} delay={catIndex * 0.05}>
+              <div className="terminal-window">
+                <div className="terminal-window-header">
+                  <span className="terminal-window-dot red" />
+                  <span className="terminal-window-dot yellow" />
+                  <span className="terminal-window-dot green" />
+                  <span className="ml-2 font-mono text-[10px] text-muted-foreground/60">
+                    {category.toLowerCase().replace(/\s+/g, "-")}.json
+                  </span>
                 </div>
+                <div className="p-5">
+                  <div className="mb-5 flex items-center gap-3">
+                    <div className="text-primary flex h-9 w-9 items-center justify-center border border-primary/30">
+                      {categoryIcons[category] || <Code2 className="h-4 w-4" />}
+                    </div>
+                    <div>
+                      <h2 className="font-mono text-base font-semibold text-primary">
+                        # {category}
+                      </h2>
+                      <p className="text-muted-foreground text-xs">
+                        {categoryDescriptions[category]}
+                      </p>
+                    </div>
+                  </div>
 
-                <StaggerContainer className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                  {skills
-                    .filter((s) => s.category === category)
-                    .map((skill) => (
-                      <StaggerItem key={skill.name}>
-                        <div className="glass-card">
-                          <div className="mb-3 flex items-center justify-between">
-                            <h3 className="font-semibold">{skill.name}</h3>
-                            <Badge variant="secondary" className="text-xs">
-                              {skill.yearsExperience}y
-                            </Badge>
+                  <StaggerContainer className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                    {skills
+                      .filter((s) => s.category === category)
+                      .map((skill) => (
+                        <StaggerItem key={skill.name}>
+                          <div className="border border-border p-3">
+                            <div className="mb-2 flex items-center justify-between">
+                              <h3 className="font-mono text-sm font-medium">{skill.name}</h3>
+                              <span className="font-mono text-[10px] text-muted-foreground">
+                                {skill.yearsExperience}y
+                              </span>
+                            </div>
+                            <div className="bg-muted relative h-1.5 overflow-hidden">
+                              <div
+                                className="h-full bg-primary transition-all duration-1000"
+                                style={{ width: `${skill.level}%` }}
+                              />
+                            </div>
+                            <p className="text-muted-foreground mt-1 text-right font-mono text-[10px]">
+                              {skill.level}%
+                            </p>
                           </div>
-                          <div className="bg-muted relative h-2 overflow-hidden rounded-full">
-                            <div
-                              className="h-full rounded-full bg-gradient-to-r from-purple-500 to-blue-500 transition-all duration-1000"
-                              style={{ width: `${skill.level}%` }}
-                            />
-                          </div>
-                          <p className="text-muted-foreground mt-1 text-right text-xs">
-                            {skill.level}%
-                          </p>
-                        </div>
-                      </StaggerItem>
-                    ))}
-                </StaggerContainer>
+                        </StaggerItem>
+                      ))}
+                  </StaggerContainer>
+                </div>
               </div>
             </FadeIn>
           ))}

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Calendar, Clock } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import { blogPosts } from "@/data/blog-posts";
 import { siteConfig } from "@/data/site";
 import { BlogPostContent } from "./blog-post-content";
@@ -55,12 +54,10 @@ export default async function BlogPostPage({ params }: PageProps) {
             </Link>
 
             <div className="mt-4">
-              <div className="mb-4 flex flex-wrap gap-2">
-                <Badge variant="gradient">{post.category}</Badge>
+              <div className="mb-4 flex flex-wrap gap-1.5">
+                <span className="terminal-tag text-[10px]">{post.category}</span>
                 {post.tags.map((tag) => (
-                  <Badge key={tag} variant="secondary" className="text-xs">
-                    {tag}
-                  </Badge>
+                  <span key={tag} className="terminal-tag text-[10px]">#{tag}</span>
                 ))}
               </div>
 

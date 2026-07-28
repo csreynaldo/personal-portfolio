@@ -4,7 +4,6 @@ import { useState } from "react";
 import Link from "next/link";
 import { ExternalLink, Github, Search, ArrowUpDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/motion-wrapper";
 import { projects } from "@/data/projects";
 
@@ -28,12 +27,14 @@ export function ProjectsContent() {
     <div className="section-padding">
       <div className="max-width">
         <FadeIn>
-          <div className="mb-12 text-center">
-            <Badge variant="gradient" className="mb-4">
-              Portfolio
-            </Badge>
+          <div className="mb-12">
+            <div className="mb-3 flex items-center gap-2 font-mono text-sm text-muted-foreground">
+              <span className="text-primary">~</span>
+              <span>$</span>
+              <span>ls ./projects/</span>
+            </div>
             <h1 className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl">My Projects</h1>
-            <p className="text-muted-foreground mx-auto max-w-2xl text-lg">
+            <p className="text-muted-foreground max-w-2xl">
               A collection of projects showcasing my skills in full-stack development, AI/ML, and
               system architecture.
             </p>
@@ -47,10 +48,10 @@ export function ProjectsContent() {
               <Search className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
               <input
                 type="text"
-                placeholder="Search projects..."
+                placeholder="grep -r 'search' ./projects/"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="border-border bg-background text-foreground placeholder:text-muted-foreground focus:ring-ring w-full rounded-xl border py-2 pr-4 pl-10 text-sm focus:ring-2 focus:outline-none"
+                className="border-border bg-background text-foreground placeholder:text-muted-foreground focus:ring-ring w-full border py-2 pr-4 pl-10 font-mono text-sm focus:ring-1 focus:outline-none"
               />
             </div>
             <div className="flex flex-wrap gap-2">
@@ -77,59 +78,59 @@ export function ProjectsContent() {
         </FadeIn>
 
         {/* Projects Grid */}
-        <StaggerContainer className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <StaggerContainer className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {filtered.map((project) => (
             <StaggerItem key={project.id}>
-              <div className="group glass-card flex h-full flex-col">
-                <div className="relative mb-4 aspect-video overflow-hidden rounded-xl bg-gradient-to-br from-purple-500/20 to-blue-500/20">
-                  <div className="flex h-full items-center justify-center">
-                    <span className="text-muted-foreground/30 text-4xl font-bold">
-                      {project.title.charAt(0)}
-                    </span>
-                  </div>
-                  {project.featured && (
-                    <Badge variant="gradient" className="absolute top-2 right-2">
-                      Featured
-                    </Badge>
-                  )}
+              <div className="terminal-window group flex h-full flex-col">
+                <div className="terminal-window-header">
+                  <span className="terminal-window-dot red" />
+                  <span className="terminal-window-dot yellow" />
+                  <span className="terminal-window-dot green" />
+                  <span className="ml-2 font-mono text-[10px] text-muted-foreground/60">
+                    {project.title.toLowerCase().replace(/\s+/g, "-")}.tsx
+                  </span>
                 </div>
-
-                <div className="flex flex-1 flex-col">
-                  <div className="mb-2 flex items-center gap-2">
-                    <Badge variant="secondary" className="text-xs">
+                <div className="flex flex-1 flex-col p-4">
+                  <div className="mb-3 flex items-center gap-2">
+                    <span className="font-mono text-[10px] text-muted-foreground">
                       {project.category}
-                    </Badge>
+                    </span>
+                    {project.featured && (
+                      <span className="font-mono text-[10px] text-primary">● featured</span>
+                    )}
                   </div>
-                  <h3 className="mb-2 text-xl font-semibold">{project.title}</h3>
-                  <p className="text-muted-foreground mb-4 flex-1 text-sm">{project.description}</p>
+                  <h3 className="mb-2 text-lg font-semibold">{project.title}</h3>
+                  <p className="text-muted-foreground mb-4 flex-1 text-sm leading-relaxed">
+                    {project.description}
+                  </p>
 
-                  <div className="mb-4 flex flex-wrap gap-2">
+                  <div className="mb-4 flex flex-wrap gap-1.5">
                     {project.technologies.slice(0, 4).map((tech) => (
-                      <Badge key={tech} variant="secondary" className="text-xs">
+                      <span key={tech} className="terminal-tag text-[10px]">
                         {tech}
-                      </Badge>
+                      </span>
                     ))}
                     {project.technologies.length > 4 && (
-                      <Badge variant="secondary" className="text-xs">
+                      <span className="terminal-tag text-[10px]">
                         +{project.technologies.length - 4}
-                      </Badge>
+                      </span>
                     )}
                   </div>
 
-                  <div className="flex gap-3">
+                  <div className="flex gap-2">
                     {project.githubUrl && (
                       <Button variant="ghost" size="sm" asChild>
                         <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                          <Github className="mr-2 h-4 w-4" />
-                          Code
+                          <Github className="mr-1.5 h-3.5 w-3.5" />
+                          src
                         </Link>
                       </Button>
                     )}
                     {project.liveUrl && (
                       <Button variant="default" size="sm" asChild>
                         <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                          <ExternalLink className="mr-2 h-4 w-4" />
-                          Live Demo
+                          <ExternalLink className="mr-1.5 h-3.5 w-3.5" />
+                          demo
                         </Link>
                       </Button>
                     )}
@@ -143,9 +144,7 @@ export function ProjectsContent() {
         {filtered.length === 0 && (
           <FadeIn>
             <div className="py-20 text-center">
-              <p className="text-muted-foreground text-lg">
-                No projects found matching your criteria.
-              </p>
+              <p className="text-muted-foreground font-mono text-sm">No projects found.</p>
               <Button
                 variant="link"
                 onClick={() => {
@@ -153,7 +152,7 @@ export function ProjectsContent() {
                   setCategory("All");
                 }}
               >
-                Clear filters
+                clear filters
               </Button>
             </div>
           </FadeIn>
