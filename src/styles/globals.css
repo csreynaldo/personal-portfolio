@@ -2,26 +2,26 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-  --color-background: oklch(0.985 0 0);
-  --color-foreground: oklch(0.045 0 0);
-  --color-card: oklch(0.96 0 0);
-  --color-card-foreground: oklch(0.045 0 0);
-  --color-popover: oklch(0.96 0 0);
-  --color-popover-foreground: oklch(0.045 0 0);
-  --color-primary: oklch(0.45 0.211 151.711);
-  --color-primary-foreground: oklch(0.985 0 0);
-  --color-secondary: oklch(0.92 0 0);
-  --color-secondary-foreground: oklch(0.045 0 0);
-  --color-muted: oklch(0.92 0 0);
+  --color-background: oklch(0.045 0 0);
+  --color-foreground: oklch(0.985 0 0);
+  --color-card: oklch(0.075 0 0);
+  --color-card-foreground: oklch(0.985 0 0);
+  --color-popover: oklch(0.075 0 0);
+  --color-popover-foreground: oklch(0.985 0 0);
+  --color-primary: oklch(0.792 0.209 151.711);
+  --color-primary-foreground: oklch(0.045 0 0);
+  --color-secondary: oklch(0.12 0 0);
+  --color-secondary-foreground: oklch(0.985 0 0);
+  --color-muted: oklch(0.12 0 0);
   --color-muted-foreground: oklch(0.556 0 0);
-  --color-accent: oklch(0.92 0 0);
-  --color-accent-foreground: oklch(0.045 0 0);
+  --color-accent: oklch(0.12 0 0);
+  --color-accent-foreground: oklch(0.985 0 0);
   --color-destructive: oklch(0.577 0.245 27.325);
   --color-destructive-foreground: oklch(0.985 0 0);
-  --color-border: oklch(0.87 0 0);
-  --color-input: oklch(0.87 0 0);
-  --color-ring: oklch(0.45 0.211 151.711);
-  --color-green-dim: oklch(0.5 0.15 151.711);
+  --color-border: oklch(0.18 0 0);
+  --color-input: oklch(0.18 0 0);
+  --color-ring: oklch(0.792 0.209 151.711);
+  --color-green-dim: oklch(0.6 0.15 151.711);
   --radius-lg: 0.25rem;
   --radius-md: 0.125rem;
   --radius-sm: 0rem;
@@ -122,7 +122,7 @@ body::before {
   translate: -50% 0;
   width: 800px;
   height: 400px;
-  background: radial-gradient(ellipse, oklch(0.45 0.211 151.711 / 0.06) 0%, transparent 70%);
+  background: radial-gradient(ellipse, oklch(0.792 0.209 151.711 / 0.03) 0%, transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
@@ -138,16 +138,16 @@ body::after {
     0deg,
     transparent,
     transparent 2px,
-    rgba(255, 255, 255, 0.03) 2px,
-    rgba(255, 255, 255, 0.03) 4px
+    rgba(0, 0, 0, 0.02) 2px,
+    rgba(0, 0, 0, 0.02) 4px
   );
 }
 
 /* Smooth scrollbar with green accent */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: oklch(0.87 0 0); border-radius: 0; }
-::-webkit-scrollbar-thumb:hover { background: oklch(0.45 0.211 151.711 / 0.3); }
+::-webkit-scrollbar-thumb { background: oklch(0.18 0 0); border-radius: 0; }
+::-webkit-scrollbar-thumb:hover { background: oklch(0.792 0.209 151.711 / 0.3); }
 
 /* Focus styles */
 *:focus-visible {
