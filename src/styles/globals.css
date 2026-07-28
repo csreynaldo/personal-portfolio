@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --color-background: oklch(0.045 0 0);
   --color-foreground: oklch(0.985 0 0);
@@ -48,6 +50,29 @@
 @keyframes fade-in-up {
   from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+.light {
+  --color-background: oklch(0.985 0 0);
+  --color-foreground: oklch(0.045 0 0);
+  --color-card: oklch(0.97 0 0);
+  --color-card-foreground: oklch(0.045 0 0);
+  --color-popover: oklch(0.97 0 0);
+  --color-popover-foreground: oklch(0.045 0 0);
+  --color-primary: oklch(0.45 0.211 151.711);
+  --color-primary-foreground: oklch(0.985 0 0);
+  --color-secondary: oklch(0.922 0 0);
+  --color-secondary-foreground: oklch(0.045 0 0);
+  --color-muted: oklch(0.922 0 0);
+  --color-muted-foreground: oklch(0.556 0 0);
+  --color-accent: oklch(0.922 0 0);
+  --color-accent-foreground: oklch(0.045 0 0);
+  --color-destructive: oklch(0.577 0.245 27.325);
+  --color-destructive-foreground: oklch(0.985 0 0);
+  --color-border: oklch(0.87 0 0);
+  --color-input: oklch(0.87 0 0);
+  --color-ring: oklch(0.45 0.211 151.711);
+  --color-green-dim: oklch(0.5 0.15 151.711);
 }
 
 @layer base {

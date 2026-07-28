@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "@/styles/globals.css";
+import { ThemeProvider } from "@/components/ui/theme-provider";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { Toaster } from "sonner";
@@ -72,21 +73,32 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${inter.variable} ${jetbrainsMono.variable}`}
+    >
       <body className="bg-background min-h-screen font-sans antialiased">
-        <Navbar />
-        <main className="relative min-h-screen pt-16">{children}</main>
-        <Footer />
-        <Toaster
-          position="bottom-right"
-          toastOptions={{
-            classNames: {
-              toast: "bg-background border border-border text-foreground shadow-lg",
-              title: "text-foreground",
-              description: "text-muted-foreground",
-            },
-          }}
-        />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Navbar />
+          <main className="relative min-h-screen pt-16">{children}</main>
+          <Footer />
+          <Toaster
+            position="bottom-right"
+            toastOptions={{
+              classNames: {
+                toast: "bg-background border border-border text-foreground shadow-lg",
+                title: "text-foreground",
+                description: "text-muted-foreground",
+              },
+            }}
+          />
+        </ThemeProvider>
       </body>
     </html>
   );
