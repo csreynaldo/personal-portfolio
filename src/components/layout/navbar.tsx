@@ -37,9 +37,8 @@ export function Navbar() {
       )}
     >
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="group relative text-xl font-bold tracking-tight">
-          <span className="gradient-text">{siteConfig.name}</span>
-          <span className="from-primary absolute -bottom-1 left-0 h-0.5 w-0 bg-gradient-to-r to-purple-500 transition-all duration-300 group-hover:w-full" />
+        <Link href="/" className="group flex items-center gap-2 font-mono text-sm">
+          <span className="text-primary">~/portfolio</span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -49,25 +48,24 @@ export function Navbar() {
               key={link.href}
               href={link.href}
               className={cn(
-                "relative rounded-lg px-3 py-2 text-sm font-medium transition-colors",
+                "relative rounded-none px-3 py-2 font-mono text-sm transition-colors",
                 pathname === link.href
-                  ? "text-foreground"
+                  ? "text-primary"
                   : "text-muted-foreground hover:text-foreground"
               )}
             >
               {pathname === link.href && (
                 <motion.div
                   layoutId="navbar-indicator"
-                  className="bg-accent absolute inset-0 rounded-lg"
+                  className="bg-primary/20 absolute inset-0"
                   transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                 />
               )}
               <span className="relative z-10">{link.label}</span>
             </Link>
           ))}
-          <div className="ml-2">
-            <ModeToggle />
-          </div>
+          <span className="text-muted-foreground mx-1 font-mono text-xs">|</span>
+          <ModeToggle />
         </div>
 
         {/* Mobile Menu Button */}
@@ -76,7 +74,6 @@ export function Navbar() {
           <Button
             variant="ghost"
             size="icon"
-            className="rounded-full"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
           >
@@ -106,9 +103,9 @@ export function Navbar() {
                   <Link
                     href={link.href}
                     className={cn(
-                      "block rounded-lg px-3 py-2 text-sm font-medium transition-colors",
+                      "block rounded-none px-3 py-2 font-mono text-sm transition-colors",
                       pathname === link.href
-                        ? "bg-accent text-foreground"
+                        ? "bg-primary/20 text-primary"
                         : "text-muted-foreground hover:text-foreground"
                     )}
                   >
