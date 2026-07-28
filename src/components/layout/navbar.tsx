@@ -37,7 +37,7 @@ export function Navbar() {
     >
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link href="/" className="group flex items-center gap-2 font-mono text-sm">
-          <span className="text-primary">~/portfolio</span>
+          <span className="text-primary">~/csrey</span>
         </Link>
 
         {/* Desktop Navigation */}
